@@ -1,0 +1,20 @@
+<section class='w-full'>
+  <heading>
+    <h1 class='font-bold text-3xl leading-10'>🥶 My personal whatever blog </h1>
+    <h3 class='font-light text-lg italic'>By ✨ Gustavo Chen ✨</h3>
+  </heading>
+
+  <hr class='mt-2 mb-16 border-stone-700'>
+
+  <h3 class='text-lg mb-2'>👇 Here's what i've been up to:</h3>
+
+  <ol class='list-decimal translate-x-6'>
+    <% @posts.each do |post| %>
+      <li class='underline decoration-wavy underline-offset-8 decoration-violet-500 hover:decoration-purple-800'>
+        <%= link_to post_path(post) do %>
+          <%= post.title %>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</section>

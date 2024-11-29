@@ -8,3 +8,17 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+@import "font-awesome";
+
+* {
+  font-family: 'Recia', serif;
+}
+
+.body-text {
+  font-family: 'Recia', serif;
+}
+
+.title-text {
+  font-family: 'General Sans', sans-serif;
+}

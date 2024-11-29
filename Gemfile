@@ -69,4 +69,4 @@ gem 'tailwindcss-rails', '~> 3.0'
 gem 'view_component'
 
 # Icons stuff
-gem 'font-awesome-sass', '~> 6'
+gem 'font-awesome-sass', '~> 6.5.2'

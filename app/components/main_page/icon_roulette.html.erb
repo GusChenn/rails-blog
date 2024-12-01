@@ -1,5 +1,9 @@
-<div>
-  <% icons_data.each do |icon, color| %>
-    <%= icon('fa-solid', icon, class: "text-#{color}")%>
-  <% end %>
+<div class='w-10 h-10 overflow-y-hidden'>
+  <div class='flex flex-col w-fit items-center vertical-roulette'>
+    <% icons_data.each do |icon, color| %>
+      <div class='w-10 h-10 text-center flex items-center justify-center'>
+        <%= icon('fa-solid', icon, class: "w-fit text-3xl text-#{color}")%>
+      </div>
+    <% end %>
+  </div>
 </div>

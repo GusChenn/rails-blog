@@ -1,20 +1,27 @@
 <section class='w-full'>
   <heading class='flex flex-col items-center sm:flex-row sm:items-end gap-4'>
-    <%= image_tag('avatar.png', class: 'w-32 h-32 rounded-full border border-stone-700') %>
-    <div class='flex flex-col items-center sm:items-start text-center'>
+    <%= image_tag('avatar.png', class: 'w-64 h-64 sm:w-32 sm:h-32 rounded-full border border-stone-700') %>
+    <div class='flex flex-col items-center sm:items-start text-center gap-2'>
       <div class='flex gap-2 font-bold text-3xl leading-10 text-balance items-baseline'>
-        <h1 class='title-text'>
-          <%= icon('fa-solid', 'lemon', class: 'text-lime-600')%>
-          My personal whatever blog
+        <div class='p-1 border rounded border-stone-700'>
+          <%= render(MainPage::IconRoulette.new) %>
+        </div>
+        <h1 class='title-text flex gap-2 items-baseline'>
+          My personal
+          <p class='playfull-text rotate-6'>whatever</p>
+          blog
         </h1>
       </div>
-      <h3 class='font-light text-lg italic title-text'>By ✨ Gustavo Chen ✨</h3>
+      <div class='overflow-y-hidden'>
+        <h3 class='font-light text-lg italic title-text very-slow-ascend translate-y-12'>
+          By ✨ Gustavo Chen ✨
+        </h3>
+      </div>
     </div>
   </heading>
 
   <hr class='mt-4 mb-16 border-stone-700'>
 
-  <%= render(MainPage::IconRoulette.new) %>
 
   <h3 class='text-lg mb-2'>👇 Here's what i've been up to:</h3>
 

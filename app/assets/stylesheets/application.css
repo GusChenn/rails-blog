@@ -22,3 +22,48 @@
 .title-text {
   font-family: 'General Sans', sans-serif;
 }
+
+.playfull-text {
+  font-family: 'Dancing Script', sans-serif;
+}
+
+.vertical-roulette {
+  white-space: nowrap;
+  animation-name: spinVerticalRoulette;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.4, .04, .51, .94);
+}
+
+.very-slow-ascend {
+  animation-name: verySlowAscend;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+}
+
+/* Each icon is 36x36 pixels. There are 20 icons in the roulette */
+@keyframes spinVerticalRoulette {
+  0% {
+    transform: translateY(0);
+  }
+
+  4% {
+    transform: translateY(8px);
+  }
+
+  96% {
+    transform: translateY(calc(-40px * 19 - 8px));
+  }
+
+  100% {
+    transform: translateY(calc(-40px * 19));
+  }
+}
+
+@keyframes verySlowAscend {
+  100% {
+    transform: translateY(0);
+  }
+}

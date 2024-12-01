@@ -12,18 +12,26 @@
 
 details>summary {
   font-family: "Font Awesome 5 Free";
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 900;
   list-style-type: '\f061';
 }
 
 details[open]>summary {
   font-family: "Font Awesome 5 Free";
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 900;
   list-style-type: '\f063';
 }
 
 details>summary>p {
   font-family: 'Recia', serif;
+}
+
+details summary>* {
+  display: inline;
+}
+
+details summary {
+  cursor: pointer;
 }

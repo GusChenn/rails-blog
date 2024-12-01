@@ -1,51 +1,9 @@
 <section class='w-full'>
-  <heading class='flex flex-col items-center sm:flex-row sm:items-end gap-4'>
-    <%= image_tag('avatar.png', class: 'w-64 h-64 sm:w-32 sm:h-32 rounded-full border border-stone-700') %>
-    <div class='flex flex-col items-center sm:items-start text-center gap-2'>
-      <div class='flex flex-col items-center sm:flex-row gap-2 font-bold text-3xl leading-10 text-balance sm:items-baseline'>
-        <div class='p-1 border rounded border-stone-700'>
-          <%= render(Home::IconRoulette.new) %>
-        </div>
-        <h1 class='title-text sm:flex sm:gap-2 sm:items-baseline'>
-          My personal
-          <span class='playfull-text sm:rotate-6'>whatever</span>
-          blog
-        </h1>
-      </div>
-      <div class='overflow-y-hidden'>
-        <h3 class='font-light text-lg italic title-text very-slow-ascend translate-y-12'>
-          By ✨ Gustavo Chen ✨
-        </h3>
-      </div>
-    </div>
-  </heading>
+  <%= render(Home::Heading.new) %>
 
   <hr class='mt-4 mb-8 border-stone-700'>
 
-  <article>
-    <h2 class='text-xl underline underline-offset-4 decoration-violet-500'>
-      About me 🤓
-    </h2>
-    <div class='pt-2 mb-4 leading-7'>
-      <p>
-        Hey! I'm  Gustavo, but people normally call me Chen. I am an
-        <%= render(UserInterface::IconTag.new(icon_name: 'clipboard', background_color: 'violet-300', content: 'electrical engineer')) %>
-        turned 
-        <%= render(UserInterface::IconTag.new(icon_name: 'keyboard', background_color: 'sky-200', content: 'full-stack developer')) %>
-        with a passion for creating fun projects like this one. I see web development not only as a means of bringing business to life, but as a way to 
-        <%= render(UserInterface::IconTag.new(icon_name: 'message', background_color: 'purple-200', content: 'express my creativity')) %>
-        and
-        <%= render(UserInterface::IconTag.new(icon_name: 'face-smile', background_color: 'yellow-200', content: 'bring joy to others')) %>
-        and to myself by working on these things. I'm based in
-        <%= render(UserInterface::IconTag.new(icon_name: 'heart', background_color: 'green-200', content: 'Brazil')) %>
-        and currently working as a remote
-        <%= render(UserInterface::IconTag.new(icon_name: 'gem', background_color: 'red-300', content: 'Ruby on Rails developer')) %>
-        to
-        <%= render(UserInterface::IconTag.new(icon_name: 'handshake', background_color: 'zinc-300', content: 'New York')) %>
-      </p>
-    </div>
-  </article>
-
+  <%= render(Home::AboutMe.new) %>
   <article>
     <h2 class='text-xl underline underline-offset-4 decoration-violet-500'>
       Here's what i've been up to:

@@ -22,8 +22,12 @@ module.exports = {
   ],
   purge: {
     safelist: [
-      'text-slate-600', 'text-zinc-700', 'text-stone-500', 'text-red-400', 'text-orange-400', 'text-yellow-700', 'text-lime-500', 'text-green-400', 'text-teal-400', 'text-blue-500', 'text-indigo-800', 'text-violet-700', 'text-purple-400', 'text-pink-600', 'text-rose-400'
+      {
+        pattern: /text-.+-.+/
+      },
+      {
+        pattern: /bg-.+-.+/
+      }
     ]
-  }
-
-}
+  },
+};

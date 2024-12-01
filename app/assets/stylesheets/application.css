@@ -12,19 +12,8 @@
 @import "font-awesome";
 @import "components/icon_roulette";
 @import "pages/home";
+@import "ui/typeface";
 
 * {
   font-family: 'Recia', serif;
-}
-
-.body-text {
-  font-family: 'Recia', serif;
-}
-
-.title-text {
-  font-family: 'General Sans', sans-serif;
-}
-
-.playfull-text {
-  font-family: 'Dancing Script', sans-serif;
 }

@@ -6,9 +6,12 @@
   animation-delay: 1s;
 }
 
-
 @keyframes verySlowAscend {
   100% {
     transform: translateY(0);
   }
+}
+
+.big-first-letter::first-letter {
+  initial-letter: 2;
 }

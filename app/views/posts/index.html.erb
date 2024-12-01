@@ -20,8 +20,40 @@
     </div>
   </heading>
 
-  <hr class='mt-4 mb-16 border-stone-700'>
+  <hr class='mt-4 mb-8 border-stone-700'>
 
+  <article>
+    <h2 class='text-xl underline underline-offset-4 decoration-violet-500'>
+      About me 🤓
+    </h2>
+    <div class='pt-2 mb-4 leading-7'>
+      <p>
+        Hey! I'm  Gustavo, but people normally call me Chen. I am an
+        <%= render(UserInterface::IconTag.new(icon_name: 'clipboard', background_color: 'violet-300', content: 'electrical engineer')) %>
+        turned 
+        <%= render(UserInterface::IconTag.new(icon_name: 'keyboard', background_color: 'sky-200', content: 'full-stack developer')) %>
+        with a passion for creating fun projects like this one. I see web development not only as a means of bringing business to life, but as a way to 
+        <%= render(UserInterface::IconTag.new(icon_name: 'message', background_color: 'purple-200', content: 'express my creativity')) %>
+        and
+        <%= render(UserInterface::IconTag.new(icon_name: 'face-smile', background_color: 'yellow-200', content: 'bring joy to others')) %>
+        and to myself by working on these things. I'm based in
+        <%= render(UserInterface::IconTag.new(icon_name: 'heart', background_color: 'green-200', content: 'Brazil')) %>
+        and currently working as a remote
+        <%= render(UserInterface::IconTag.new(icon_name: 'gem', background_color: 'red-300', content: 'Ruby on Rails developer')) %>
+        to
+        <%= render(UserInterface::IconTag.new(icon_name: 'handshake', background_color: 'zinc-300', content: 'New York')) %>
+      </p>
+    </div>
+  </article>
+
+  <article>
+    <h2 class='text-xl underline underline-offset-4 decoration-violet-500'>
+      Here's what i've been up to:
+    </h2>
+    <p class='py-2'>
+      I'm a full-stack developer, currently working with Ruby on Rails. I'm also a big fan of React and I'm always looking for new technologies to learn.
+    </p>
+  </article>
 
   <h3 class='text-lg mb-2'>👇 Here's what i've been up to:</h3>
 

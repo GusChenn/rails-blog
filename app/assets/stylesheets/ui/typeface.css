@@ -1,0 +1,29 @@
+.body-text {
+  font-family: 'Recia', serif;
+}
+
+.title-text {
+  font-family: 'General Sans', sans-serif;
+}
+
+.playfull-text {
+  font-family: 'Dancing Script', sans-serif;
+}
+
+details>summary {
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.2em;
+  font-weight: 900;
+  list-style-type: '\f061';
+}
+
+details[open]>summary {
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.2em;
+  font-weight: 900;
+  list-style-type: '\f063';
+}
+
+details>summary>p {
+  font-family: 'Recia', serif;
+}

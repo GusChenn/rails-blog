@@ -1,0 +1,14 @@
+.very-slow-ascend {
+  animation-name: verySlowAscend;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-delay: 1s;
+}
+
+
+@keyframes verySlowAscend {
+  100% {
+    transform: translateY(0);
+  }
+}

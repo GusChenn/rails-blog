@@ -1,23 +1,25 @@
-<article>
-  <h2 class='text-xl underline underline-offset-4 decoration-violet-500'>
+<article data-controller='about-section'>
+  <h2 class='text-2xl underline underline-offset-4 decoration-violet-500'>
     About me 🤓
   </h2>
-  <div class='pt-2 mb-4 leading-7'>
-    <p>
-      Hey! I'm  Gustavo, but people normally call me Chen. I am an
+  <div class='mt-4 mb-8 leading-7'>
+    <p class='indent-2 text-pretty text-lg'>
+      Hey there! I'm  Gustavo, but people normally call me Chen (<i>ˈʃen</i>). I am an
       <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'clipboard', background_color: 'violet-300', content: 'electrical engineer')) %>
       turned 
       <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'keyboard', background_color: 'sky-200', content: 'full-stack developer')) %>
-      with a passion for creating fun projects like this one. I see web development not only as a means of bringing business to life, but as a way to 
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'message', background_color: 'purple-200', content: 'express my creativity')) %>
-      and
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'face-smile', background_color: 'yellow-200', content: 'bring joy to others')) %>
-      and to myself by working on these things. I'm based in
+      with a passion for creating fun and silly projects like this one. I see web development not only as a means of building business ideas but also as a way to 
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'face-smile', background_color: 'yellow-200', content: 'bring joy to the world')) %>
+      by using it as a tool to
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'message', background_color: 'purple-200', content: 'express and share creative ideas')) %>
+      . Whether it is a well worked beautifully crafted portfolio, a simple website with pictures of cute animals or even just a blank page with a funny phrase, they all can make us feel something positive, and that's what i find most beautifull about web development. I'm based in
       <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'heart', background_color: 'green-200', content: 'Brazil')) %>
       and currently working as a remote
       <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'gem', background_color: 'red-300', content: 'Ruby on Rails developer')) %>
-      to
+      for
       <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'handshake', background_color: 'zinc-300', content: 'New York')) %>
+      . If you are interested in my past experiences, you can check them out on my ID
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'id-card', background_color: 'teal-200', content: "<span class='underline decoration-blue-500 cursor-pointer hover:decoration-blue-900' data-action='click->about-section#toggleDrawer'>right here</span>".html_safe)) %>
     </p>
   </div>
 

@@ -1,0 +1,9 @@
+.experiences-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s cubic-bezier(0.465, 0.005, 0.020, 1.245);
+}
+
+.experiences-drawer.open {
+  max-height: 200px;
+}

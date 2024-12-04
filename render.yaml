@@ -1,15 +1,16 @@
 databases:
   - name: rails_blog_production
     databaseName: rails_blog_production
-    user: rails_blog
+    user: rails_blog_production
     plan: free
 
 services:
   - type: web
-    name: rails_blog
+    name: rails_blog_production
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
+    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
@@ -19,4 +20,4 @@ services:
       - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
-        value: 2
+        value: 2 # sensible default

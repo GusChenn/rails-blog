@@ -2,6 +2,6 @@
 
 module Home
   class ExperienceCard < ApplicationComponent
-    attr_accessor :icon_family, :icon_name, :icon_color, :title, :content
+    attr_accessor :icon_family, :icon_name, :icon_color, :title, :duration, :tags_data, :descriptions
   end
 end

@@ -12,6 +12,7 @@
 @import "font-awesome";
 @import "components/icon_roulette";
 @import "components/experiences";
+@import "components/experience_card";
 @import "pages/home";
 @import "ui/typeface";
 

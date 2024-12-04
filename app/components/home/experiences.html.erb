@@ -1,4 +1,4 @@
-<div class='flex flex-col sm:flex-row gap-2 px-8 experiences-drawer mb-8' data-about-section-target='experiencesDrawer'>
+<div class='flex flex-col gap-2 px-8 mb-8'>
   <% experiences.each do |experience| %>
     <%= render(Home::ExperienceCard.new(experience)) %>
   <% end %>

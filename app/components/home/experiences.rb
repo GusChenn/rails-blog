@@ -18,11 +18,46 @@ module Home
           icon_name: 'rocket',
           icon_color: 'violet-500',
           title: 'Qulture.Rocks',
-          content: <<~HTML
-            I worked as a full-stack developer at Qulture.Rocks,
-            a company that helps other companies to improve their culture
-            and employee engagement.
-          HTML
+          duration: '2020 - 2022',
+          tags_data: [
+            {
+              icon_family: 'fa-regular',
+              icon_name: 'gem',
+              background_color: 'red-300',
+              content: 'Ruby on Rails'
+            },
+            {
+              icon_family: 'fa-brands',
+              icon_name: 'react',
+              background_color: 'blue-300',
+              content: 'React'
+            },
+            {
+              icon_family: 'fa-solid',
+              icon_name: 'hexagon-nodes',
+              background_color: 'rose-400',
+              content: 'GraphQL'
+            },
+            {
+              icon_family: 'fa-brands',
+              icon_name: 'angular',
+              background_color: 'red-400',
+              content: 'Angular JS'
+            },
+            {
+              icon_family: 'fa-solid',
+              icon_name: 'recycle',
+              background_color: 'pink-300',
+              content: 'Styled components'
+            }
+          ],
+          descriptions: [
+            'Created a dashboard for monitoring and managing company turnover metrics.',
+            'Created a feature that allowed users to use LLMs to analyse their data and generate reports',
+            'Integrated third party data into our system through GraphQL APIs',
+            'Developed part of the application\'s design system',
+            'Founded the company\'s front-end chapter'
+          ]
         }
     end
 
@@ -33,8 +68,12 @@ module Home
           icon_name: 'graduation-cap',
           icon_color: 'yellow-500',
           title: 'UOL EdTech',
-          content: 'I worked as a full-stack developer at UOL EdTech, ' \
-                  'a company that provides online courses for students and professionals.'
+          duration: '2020 - 2022',
+          descriptions: [
+            'Created a dashboard to help users to manage their turnover metrics.',
+            'Created a dashboard to help users to manage their turnover metrics.',
+            'Created a dashboard to help users to manage their turnover metrics.'
+          ]
         }
     end
 
@@ -45,8 +84,10 @@ module Home
           icon_name: 'house-signal',
           icon_color: 'blue-500',
           title: 'StayFi',
-          content: 'I worked as a full-stack developer at StayFi, ' \
-                  'a company that provides WiFi marketing solutions for hotels and resorts.'
+          duration: '2020 - 2022',
+          descriptions: [
+            'Created a dashboard to help users to manage their turnover metrics.'
+          ]
         }
     end
     # rubocop:enable Metrics/MethodLength

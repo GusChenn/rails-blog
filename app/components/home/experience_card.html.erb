@@ -1,11 +1,32 @@
-<article class='rounded border border-stone-700 flex flex-col grow p-4 gap-2'>
-  <div class='flex gap-2 items-baseline'>
-    <%= icon(icon_family, icon_name, class: "text-#{icon_color} text-lg") %>
-    <h2 class='title-text font-bold'>
-      <%= title %>
-    </h2>
+<article class='rounded border border-stone-700 flex flex-col sm:flex-row justify-between'>
+  <div class='flex flex-col w-full sm:w-2/3 p-4 gap-2'>
+    <div class='experience-grid'>
+      <%= icon(icon_family, icon_name, class: "text-#{icon_color} text-lg w-fit") %>
+      <h2 class='title-text font-bold'>
+        <%= title %>
+      </h2>
+      <h4 class='font-italica text-sm col-start-2 row-start-2'>
+        <%= duration %>
+      </h4>
+    </div>
+    <div class='text-sm'>
+      <% descriptions.each do |description_line| %>
+        <div class='flex items-baseline gap-2'>
+          <span class='text-lg text-violet-500'>
+            »
+          </span>
+          <%= description_line %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= content %>
-  </div>
+  <% if tags_data.present? %>
+    <div class='text-xs w-full sm:w-1/3 p-4 pt-0 sm:pt-4 sm:pl-0 leading-6 sm:text-pretty text-center sm:text-right'>
+      <% tags_data.each do |tag_data| %>
+        <div class='inline-block'>
+          <%= render(UserInterface::IconTag.new(tag_data)) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </article>

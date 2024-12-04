@@ -2,10 +2,10 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = [
-    "experiencesDrawer",
+    "modal"
   ];
 
-  toggleDrawer() {
-    this.experiencesDrawerTarget.classList.toggle("open");
+  openModal() {
+    this.modalTarget.showModal();
   }
 }

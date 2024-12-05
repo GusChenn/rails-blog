@@ -1,4 +1,4 @@
-<article data-controller='about-section'>
+<article data-controller='user-interface--modal'>
   <h2 class='text-2xl underline underline-offset-4 decoration-violet-500'>
     About me 🤓
   </h2>
@@ -20,20 +20,11 @@
       for
       <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'handshake', background_color: 'zinc-300', content: 'New York')) %>
       . If you are interested in my past experiences, you can check them out by clicking on my ID
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'id-card', background_color: 'teal-200', content: "<span class='underline decoration-blue-500 cursor-pointer hover:decoration-blue-900' data-action='click->about-section#openModal'>« my ID</span>".html_safe)) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'id-card', background_color: 'teal-200', content: "<span class='underline decoration-blue-500 cursor-pointer hover:decoration-blue-900' data-action='click->user-interface--modal#openModal'>« my ID</span>".html_safe)) %>
     </p>
   </div>
 
-
-  <dialog class="rounded-lg p-4 backdrop:bg-gray-950/85" data-about-section-target='modal'>
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-bold">Some of my experiences</h3>
-      <button onclick="document.getElementById('experience-modal').close()" class="text-gray-500 hover:text-gray-700">
-        ×
-      </button>
-    </div>
-    <div class="modal-content">
-      <%= render(Home::Experiences.new) %>
-    </div>
-  </dialog>
+  <%= render(UserInterface::Modal.new) do %>
+    <%= render(Home::Experiences.new) %>
+  <% end %>
 </article>

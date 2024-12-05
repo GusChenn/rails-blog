@@ -18,7 +18,41 @@ module Home
           icon_name: 'rocket',
           icon_color: 'violet-500',
           title: 'Qulture.Rocks',
-          duration: '2020 - 2022',
+          duration: '2021 - 2022',
+          tags_data: [
+            {
+              icon_family: 'fa-brands',
+              icon_name: 'react',
+              background_color: 'blue-300',
+              content: 'React'
+            },
+            {
+              icon_family: 'fa-solid',
+              icon_name: 'hexagon-nodes',
+              background_color: 'rose-400',
+              content: 'GraphQL'
+            },
+            {
+              icon_family: 'fa-solid',
+              icon_name: 'recycle',
+              background_color: 'pink-300',
+              content: 'Styled components'
+            }
+          ],
+          descriptions: [
+            'Created a dashboard for monitoring and managing company turnover metrics.'
+          ]
+        }
+    end
+
+    def uol_edtech_experience
+      @uol_edtech_experience ||=
+        {
+          icon_family: 'fa-solid',
+          icon_name: 'graduation-cap',
+          icon_color: 'yellow-500',
+          title: 'UOL EdTech',
+          duration: '2023 - 2024',
           tags_data: [
             {
               icon_family: 'fa-regular',
@@ -52,27 +86,10 @@ module Home
             }
           ],
           descriptions: [
-            'Created a dashboard for monitoring and managing company turnover metrics.',
-            'Created a feature that allowed users to use LLMs to analyse their data and generate reports',
-            'Integrated third party data into our system through GraphQL APIs',
+            'Created a feature that helped users analyse their data and generate reports using an LLM integration',
+            'Integrated third party data to our system through GraphQL APIs',
             'Developed part of the application\'s design system',
             'Founded the company\'s front-end chapter'
-          ]
-        }
-    end
-
-    def uol_edtech_experience
-      @uol_edtech_experience ||=
-        {
-          icon_family: 'fa-solid',
-          icon_name: 'graduation-cap',
-          icon_color: 'yellow-500',
-          title: 'UOL EdTech',
-          duration: '2020 - 2022',
-          descriptions: [
-            'Created a dashboard to help users to manage their turnover metrics.',
-            'Created a dashboard to help users to manage their turnover metrics.',
-            'Created a dashboard to help users to manage their turnover metrics.'
           ]
         }
     end
@@ -84,9 +101,17 @@ module Home
           icon_name: 'house-signal',
           icon_color: 'blue-500',
           title: 'StayFi',
-          duration: '2020 - 2022',
+          duration: '2024 - now',
+          tags_data: [
+            {
+              icon_family: 'fa-regular',
+              icon_name: 'gem',
+              background_color: 'red-300',
+              content: 'Ruby on Rails'
+            }
+          ],
           descriptions: [
-            'Created a dashboard to help users to manage their turnover metrics.'
+            'Currently working WiFi and makering solutions for vacation rentals'
           ]
         }
     end

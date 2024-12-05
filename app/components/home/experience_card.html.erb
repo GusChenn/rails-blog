@@ -21,7 +21,7 @@
     </div>
   </div>
   <% if tags_data.present? %>
-    <div class='text-xs w-full sm:w-1/3 p-4 pt-0 sm:pt-4 sm:pl-0 leading-6 sm:text-pretty text-center sm:text-right'>
+    <div class='text-sm w-full sm:w-1/3 p-4 pt-0 sm:pt-4 sm:pl-0 leading-6 sm:text-pretty text-center sm:text-right'>
       <% tags_data.each do |tag_data| %>
         <div class='inline-block'>
           <%= render(UserInterface::IconTag.new(tag_data)) %>

@@ -4,16 +4,8 @@
   <hr class='mt-4 mb-8 border-stone-700'>
 
   <%= render(Home::AboutMe.new) %>
-  <article>
-    <h2 class='text-xl underline underline-offset-4 decoration-violet-500'>
-      Here's what i've been up to:
-    </h2>
-    <p class='py-2'>
-      I'm a full-stack developer, currently working with Ruby on Rails. I'm also a big fan of React and I'm always looking for new technologies to learn.
-    </p>
-  </article>
 
-  <h3 class='text-lg mb-2'>👇 Here's what i've been up to:</h3>
+  <%= render(Home::WhatIveBeenUpTo.new) %>
 
   <ol class='list-decimal translate-x-6'>
     <% @posts.each do |post| %>

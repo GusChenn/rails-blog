@@ -1,0 +1,28 @@
+<article data-controller='public-drawing-board--main'>
+  <h1 class="font-bold text-4xl mb-4">Public Drawing Board</h1>
+  <form data-action="submit->public-drawing-board--main#saveDrawing">
+    <div>
+      <canvas
+        class="border border-stone-700 rounded"
+        width="<%= @width %>"
+        height="<%= @height %>"
+        data-public-drawing-board--main-target='canvas'
+        data-action="mousedown->public-drawing-board--main#startPath mousemove->public-drawing-board--main#draw mouseup->public-drawing-board--main#closePath"
+      >
+      </canvas>
+
+      <div class="mt-4">
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          Save Drawing
+        </button>
+        <button
+          type="button"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          data-action="click->public-drawing-board--main#clearCanvas"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  </form>
+</article>

@@ -1,0 +1,5 @@
+Criar um canvas na view da drawing board
+Fazer com que o canvas seja desenhavel
+Criar um botao pra dar submit no desenho
+Durante submit, converter dados do canvas em um array de Uint8
+Mandar array de Uint8 pro backend e salvar no banco

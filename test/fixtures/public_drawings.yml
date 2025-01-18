@@ -2,18 +2,15 @@
 
 # == Schema Information
 #
-# Table name: posts
+# Table name: public_drawings
 #
 #  id         :bigint           not null, primary key
-#  content    :text
-#  title      :string
+#  image_data :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 one:
-  title: MyString
-  content: MyText
+  image_data: MyText
 
 two:
-  title: MyString
-  content: MyText
+  image_data: MyText

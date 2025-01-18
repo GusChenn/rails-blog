@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: public_drawing_board_scribbles
+#
+#  id            :bigint           not null, primary key
+#  active        :boolean          default(TRUE)
+#  scribble_data :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+one:
+  scribble_coordinates: 
+  active: false
+
+two:
+  scribble_coordinates: 
+  active: false

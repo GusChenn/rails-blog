@@ -87,8 +87,6 @@ module Home
           ],
           descriptions: [
             'Created a feature that helped users analyse their data and generate reports using an LLM integration',
-            'Integrated third party data to our system through GraphQL APIs',
-            'Developed part of the application\'s design system',
             'Founded the company\'s front-end chapter'
           ]
         }

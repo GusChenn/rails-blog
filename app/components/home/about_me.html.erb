@@ -1,26 +1,26 @@
 <article data-controller='user-interface--modal'>
-  <h2 class='text-2xl underline underline-offset-4 decoration-violet-500 mb-4'>
-    About me 🤓
-  </h2>
+  <%#<h1 class='text-3xl underline decoration-wavy underline-offset-8 decoration-violet-500 mb-8'>%>
+  <%#  About me 🤓%>
+  <%#</h1>%>
   <div class='mb-8'>
-    <p class='indent-3 text-pretty text-lg leading-[2.1rem]'>
+    <p class='indent-8 text-pretty text-lg leading-8 body-text font-light'>
       Hey there! I'm  Gustavo, but people normally call me Chen (<i>ˈʃen</i>). I am an
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'clipboard', background_color: 'violet-300', content: 'electrical engineer')) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'clipboard', background_color: 'violet-300', content: 'electrical engineer', custom_class: 'mr-1')) %>
       turned 
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'keyboard', background_color: 'sky-200', content: 'full-stack developer')) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'keyboard', background_color: 'sky-200', content: 'full-stack developer', custom_class: 'mr-1')) %>
       with a passion for creating fun and silly projects like this one.
       I see web development not only as a means of building business ideas but also as a way to 
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'face-smile', background_color: 'yellow-200', content: 'bring joy to the world')) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'face-smile', background_color: 'yellow-200', content: 'bring joy to the world', custom_class: 'mr-1')) %>
       by using it as a tool to
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'message', background_color: 'purple-200', content: 'express and share creative ideas')) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'message', background_color: 'purple-200', content: 'express and share creative ideas', custom_class: 'mr-1')) %>
       . Whether it is a well worked beautifully crafted portfolio, a simple website with pictures of cute animals or even just a blank page with a funny phrase, they all can make us feel something positive, and that's what i find most beautifull about web development. I'm based in
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'heart', background_color: 'green-200', content: 'Brazil')) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'heart', background_color: 'green-200', content: 'Brazil', custom_class: 'mr-1')) %>
       and currently working as a remote
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'gem', background_color: 'red-300', content: 'Ruby on Rails developer')) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'gem', background_color: 'red-300', content: 'Ruby on Rails developer', custom_class: 'mr-1')) %>
       for
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'handshake', background_color: 'zinc-300', content: 'New York')) %>
-      . If you are interested in my past experiences, you can check them out by clicking on my ID
-      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'id-card', background_color: 'teal-200', content: "<span class='underline decoration-blue-500 cursor-pointer hover:decoration-blue-900' data-action='click->user-interface--modal#openModal'>« my ID</span>".html_safe)) %>
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'handshake', background_color: 'zinc-300', content: 'New York', custom_class: 'mr-1')) %>
+      . If you are interested in my past experiences, you can check them out by clicking on
+      <%= render(UserInterface::IconTag.new(icon_family: 'fa-regular', icon_name: 'id-card', background_color: 'teal-200', content: "<span class='underline decoration-blue-500 cursor-pointer hover:decoration-blue-900' data-action='click->user-interface--modal#openModal'>my ID</span>".html_safe)) %>
     </p>
   </div>
 

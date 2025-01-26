@@ -7,3 +7,12 @@
     @apply underline underline-offset-4 decoration-sky-500 decoration-1 decoration-wavy;
   }
 }
+
+.styled-first-letter::first-letter {
+  @apply text-violet-800;
+
+  -webkit-initial-letter: 2;
+  initial-letter: 2;
+  font-weight: bold;
+  margin-right: .75em;
+}

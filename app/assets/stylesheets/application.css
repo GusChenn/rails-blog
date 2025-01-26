@@ -14,7 +14,7 @@
 @import "components/experiences";
 @import "components/experience_card";
 @import "pages/home";
-@import "ui/typeface";
+@import "ui/typeface.tailwind.css";
 
 * {
   font-family: 'Recia', serif;

@@ -38,9 +38,6 @@ module Home
               background_color: 'pink-300',
               content: 'Styled components'
             }
-          ],
-          descriptions: [
-            'Created a dashboard for monitoring and managing company turnover metrics.'
           ]
         }
     end
@@ -84,10 +81,6 @@ module Home
               background_color: 'pink-300',
               content: 'Styled components'
             }
-          ],
-          descriptions: [
-            'Created a feature that helped users analyse their data and generate reports using an LLM integration',
-            'Founded the company\'s front-end chapter'
           ]
         }
     end
@@ -107,9 +100,6 @@ module Home
               background_color: 'red-300',
               content: 'Ruby on Rails'
             }
-          ],
-          descriptions: [
-            'Currently working WiFi and makering solutions for vacation rentals'
           ]
         }
     end

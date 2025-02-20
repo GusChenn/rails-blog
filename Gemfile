@@ -63,7 +63,7 @@ group :test do
 end
 
 # Tailwind stuff
-gem 'tailwindcss-rails', '~> 3.0'
+gem 'tailwindcss-rails', '~> 4.1'
 
 # View components stuff
 gem 'view_component'

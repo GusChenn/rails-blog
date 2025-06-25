@@ -1,5 +1,5 @@
-# == Schema Information
-#
+# frozen_string_literal: true
+
 # Table name: public_drawings
 #
 #  id         :bigint           not null, primary key

@@ -1,5 +1,21 @@
 <%= turbo_frame_tag "project_display" do %>
   <section>
-    hello there
+    <div data-controller="shader" class="flex flex-col items-center justify-center">
+      <div class="w-full">
+        <div class="text-sm prose prose-lg max-w-none text-gray-600 mb-6">
+          <p class="body-text">
+            The animation in the canvas below is rendered in real-time using a <strong>shader</strong>. Shaders are small, powerful programs that run directly on your computer's Graphics Processing Unit (GPU), allowing for incredibly fast and complex visual effects.
+          </p>
+          <ul>
+            <li class="body-text">A <strong>Vertex Shader</strong> calculates the position of each corner of a shape.</li>
+            <li class="body-text">A <strong>Fragment Shader</strong> runs for every single pixel inside that shape to determine its final color.</li>
+          </ul>
+          <p class="body-text">
+            This example uses a fragment shader to create an animated gradient effect.
+          </p>
+        </div>
+        <canvas data-shader-target="canvas" width="640" height="480" class="w-full h-auto aspect-[4/3] border border-gray-300 rounded-lg shadow-md"></canvas>
+      </div>
+    </div>
   </section>
 <% end %>

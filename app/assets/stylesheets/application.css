@@ -19,3 +19,7 @@
 * {
   font-family: 'Recia', serif;
 }
+
+code, pre code {
+    font-family: "JetBrains Mono", monospace !important;
+}

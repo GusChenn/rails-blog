@@ -1,7 +1,38 @@
 <%= turbo_frame_tag "project_display" do %>
   <section>
-    <div data-controller="" class="flex flex-col items-center justify-center">
-      hello
+    <div data-controller="" class="flex flex-col items-center justify-center ">
+      <p class="text-pretty text-lg leading-8 body-text font-light">
+        On this experiment i plan to create my own custom event subscription system.
+      </p>
+      <br />
+      <p class="text-pretty text-lg leading-8 body-text font-light">
+        Whenever a JavaScript developer wants to subscribe an element to an event, it usually uses the default <code class="bg-slate-300">element.addEventListener()</code> API. I want to figure out how I can implement my own version of this API.
+      </p>
+
+      <div class="w-full">
+        <pre><code data-controller="highlight">
+class EventBus {
+  /* 
+  Event: User action and its callback
+  Subscription: Explicit declaration that an element is listening for a specific event
+  */
+
+  constructor() {
+    this.events = {}
+  }
+
+  setEvent(eventName, callback) {
+    this.events[eventName] = {
+      callback
+    }
+  }
+
+  subscribe(eventName) {}
+
+  trigger(eventName) {}
+}
+        </code></pre>
+      </div>
     </div>
   </section>
 <% end %>

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "project_display" do %>
   <section>
-    <div data-controller="" class="flex flex-col">
+    <div class="flex flex-col">
       <%= render(UserInterface::Paragraph.new) do %>
         I've always wondered how does the browser's event listener API works under the hood. So to get a better understanding of it, I want to create my own event subscription system. It may have nothing to do with the browser's event system, but I want to come up with my own version of it and then compare it with the real deal.
       <% end %>
@@ -13,7 +13,7 @@
 
       <ol class="list-decimal list-inside">
         <li class="text-pretty text-lg leading-8 body-text font-light">
-          <b class="text-pretty text-lg leading-8 body-text">Event:</b> The event subscription system must be aware of the existance of an 'event';
+          <b class="text-pretty text-lg leading-8 body-text">Event:</b> The event subscription system must be aware of the existance of a specific event;
         </li>
         <li class="text-pretty text-lg leading-8 body-text font-light">
           <b class="text-pretty text-lg leading-8 body-text">Subscription:</b> An element opts in to listen for a specific event;
@@ -27,6 +27,80 @@
       </ol>
       <br />
 
+      <%= render(UserInterface::Paragraph.new) do %>
+        With this in mind, I want to start with a simple implementation where the <strong class="text-pretty text-lg leading-8 body-text">system</strong> only knows a single event, defines a single fixed callback for that event and knows which elements are subscribed to that event bus (it could be the other way around! We could make it so the element knows to which event buses it is subscribed to) while the <strong class="text-pretty text-lg leading-8 body-text">element</strong> simply subscribes to that event.
+      <% end %>
+      <br />
+
+      <div class="w-full">
+        <%= render(UserInterface::CodeBlock.new) do %>
+class EventBus {
+  constructor({ eventName, callback }) {
+    this.eventName = eventName
+    this.callback = callback
+    this.subscribedElements = []
+  }
+
+  broadcast() {
+    this.subscribedElements.forEach(el => {
+      this.callback.call(this, el)
+    })
+  }
+
+  subscribeElement(el) {
+    this.subscribedElements.push(el)
+  }
+}
+
+class EventBusElement {
+  constructor({ eventBus }) {
+    this.eventBus = eventBus
+  }
+
+  subscribe() {
+    this.eventBus.subscribeElement(this)
+  }
+}
+        <% end %>
+      </div>
+      <br />
+
+      <%= render(UserInterface::Paragraph.new) do %>
+        And by using this implementation, we get the following:
+      <% end %>
+      <br />
+
+      <div class="w-full">
+        <%= render(UserInterface::CodeBlock.new) do %>
+const eventBus = new EventBus({
+  eventName: 'greet',
+  callback: () => {
+    console.log('Hey there!')
+  }
+})
+
+const eventBusElement1 = new EventBusElement({ eventBus })
+const eventBusElement2 = new EventBusElement({ eventBus })
+
+// 2. Subscribe the element to the event
+eventBusElement1.subscribe()
+eventBusElement2.subscribe()
+
+// 3. Make the event bus trigger the callback
+eventBus.broadcast()
+
+// Result:
+// Hey there!
+// Hey there!
+        <% end %>
+      </div>
+      <br />
+
+      <%= render(UserInterface::Paragraph.new) do %>
+        And it works! But i noticed some things that are pretty different from the original browser event handling API. The first thing is that each event bus is responsible for a single event, and can only handle a single callback. We can modify the event bus class in order to fix this:
+      <% end %>
+      <br />
+
       <div class="w-full">
         <%= render(UserInterface::CodeBlock.new) do %>
 class EventBus {
@@ -34,20 +108,112 @@ class EventBus {
     this.events = {}
   }
 
-  setEvent(eventName, callback) {
+  createEvent(eventName) {
     this.events[eventName] = {
-      callback
+      subscribedElements: [],
     }
   }
 
-  subscribe(eventName) {}
+  broadcast(eventName) {
+    const subscribedElements = this.events[eventName]?.subscribedElements
 
-  trigger(eventName) {}
+    if(!subscribedElements) return
+
+    subscribedElements.forEach(subscription => {
+      subscription.callback.call(subscription.element)
+    })
+  }
+
+  subscribeElement(element, eventName, callback) {
+    this.events[eventName]?.subscribedElements.push({
+      element,
+      callback
+    })
+  }
+}
+
+class EventBusElement {
+  constructor({ eventBus }) {
+    this.eventBus = eventBus
+  }
+
+  subscribe(eventName, callback) {
+    this.eventBus.subscribeElement(this, eventName, callback)
+  }
 }
         <% end %>
-        <br />
       </div>
       <br />
+
+      <%= render(UserInterface::Paragraph.new) do %>
+        Another thing we can improve is making the event declaration dynamic, so we don't need to explicitly declare every single new event. We can achieve that by simply modifying the event bus to check for the existance of the event before subscribing an element to that event:
+      <% end %>
+      <br />
+
+      <div class="w-full">
+        <%= render(UserInterface::CodeBlock.new) do %>
+subscribeElement(element, eventName, callback) {
+  if(!this.events[eventName]) {
+    this._createEvent(eventName)
+  }
+
+  this.events[eventName].subscribedElements.push({
+    element,
+    callback
+  })
+}
+        <% end %>
+      </div>
+      <br />
+
+      <%= render(UserInterface::Paragraph.new) do %>
+        We can also add a new <code class="bg-slate-300">data</code> attribute to the event bus element class. This should allow us to create more customized callback functions:
+      <% end %>
+      <br />
+
+      <div class="w-full">
+        <%= render(UserInterface::CodeBlock.new) do %>
+class EventBusElement {
+  constructor({ eventBus, data }) {
+    this.eventBus = eventBus
+    // Added this
+    this.data = data
+  }
+
+  subscribe(eventName, callback) {
+    this.eventBus.subscribeElement(this, eventName, callback)
+  }
+}
+
+// Which allows us to do stuff like this:
+
+const eventBusElement2 = new EventBusElement({
+  eventBus,
+  data: {
+    name: 'second element'
+  }
+})
+
+eventBusElement2.subscribe(
+  'goodbye',
+  function() {
+    console.log(`Goodbye from ${this.data.name}`)
+  }
+)
+
+eventBus.broadcast('goodbye')
+// Goodbye from second element
+        <% end %>
+      </div>
+      <br />
+
+      <%= render(UserInterface::Quote.new) do %>
+        One thing i found out while working on this modification is that arrow functions don't have their own <code class="bg-slate-300">this</code> context!
+      <% end %>
+      <br />
+
+      <div data-controller="custom-event">this</div>
+
     </div>
   </section>
 <% end %>

@@ -1,14 +1,14 @@
 <%= turbo_frame_tag "project_display" do %>
   <section>
-    <div data-controller="" class="flex flex-col items-center justify-center">
-      <p class="text-pretty text-lg leading-8 body-text font-light">
+    <div data-controller="" class="flex flex-col">
+      <%= render(UserInterface::Paragraph.new) do %>
         I've always wondered how does the browser's event listener API works under the hood. So to get a better understanding of it, I want to create my own event subscription system. It may have nothing to do with the browser's event system, but I want to come up with my own version of it and then compare it with the real deal.
-      </p>
+      <% end %>
       <br />
 
-      <p class="text-pretty text-lg leading-8 body-text font-light">
+      <%= render(UserInterface::Paragraph.new) do %>
         Whenever a JavaScript developers want to make an element listen for an event, it usually uses the default <code class="bg-slate-300">element.addEventListener()</code> API. This API allows its user to specify an event type (like 'click' or 'mouseover') and a callback function that will be executed when that event occurs on the element. So there are four main things that are being handled by the API:
-      </p>
+      <% end %>
       <br />
 
       <ol class="list-decimal list-inside">
@@ -28,7 +28,7 @@
       <br />
 
       <div class="w-full">
-        <pre><code data-controller="highlight">
+        <%= render(UserInterface::CodeBlock.new) do %>
 class EventBus {
   constructor() {
     this.events = {}
@@ -44,7 +44,8 @@ class EventBus {
 
   trigger(eventName) {}
 }
-        </code></pre>
+        <% end %>
+        <br />
       </div>
       <br />
     </div>

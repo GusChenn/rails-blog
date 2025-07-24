@@ -20,6 +20,10 @@
   font-family: 'Recia', serif;
 }
 
-code, pre code {
-    font-family: "JetBrains Mono", monospace !important;
+code, pre code, pre code span {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+code {
+  border-radius: 4px;
 }

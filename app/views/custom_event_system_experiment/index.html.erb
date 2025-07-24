@@ -33,35 +33,36 @@
       <br />
 
       <div class="w-full">
-        <%= render(UserInterface::CodeBlock.new) do %>
-class EventBus {
-  constructor({ eventName, callback }) {
-    this.eventName = eventName
-    this.callback = callback
-    this.subscribedElements = []
-  }
+        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
+          class EventBus {
+            constructor({ eventName, callback }) {
+              this.eventName = eventName
+              this.callback = callback
+              this.subscribedElements = []
+            }
 
-  broadcast() {
-    this.subscribedElements.forEach(el => {
-      this.callback.call(this, el)
-    })
-  }
+            broadcast() {
+              this.subscribedElements.forEach(el => {
+                this.callback.call(this, el)
+              })
+            }
 
-  subscribeElement(el) {
-    this.subscribedElements.push(el)
-  }
-}
+            subscribeElement(el) {
+              this.subscribedElements.push(el)
+            }
+          }
 
-class EventBusElement {
-  constructor({ eventBus }) {
-    this.eventBus = eventBus
-  }
+          class EventBusElement {
+            constructor({ eventBus }) {
+              this.eventBus = eventBus
+            }
 
-  subscribe() {
-    this.eventBus.subscribeElement(this)
-  }
-}
-        <% end %>
+            subscribe() {
+              this.eventBus.subscribeElement(this)
+            }
+          }
+        JAVASCRIPT
+        %>
       </div>
       <br />
 
@@ -71,28 +72,29 @@ class EventBusElement {
       <br />
 
       <div class="w-full">
-        <%= render(UserInterface::CodeBlock.new) do %>
-const eventBus = new EventBus({
-  eventName: 'greet',
-  callback: () => {
-    console.log('Hey there!')
-  }
-})
+        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
+          const eventBus = new EventBus({
+            eventName: 'greet',
+            callback: () => {
+              console.log('Hey there!')
+            }
+          })
 
-const eventBusElement1 = new EventBusElement({ eventBus })
-const eventBusElement2 = new EventBusElement({ eventBus })
+          const eventBusElement1 = new EventBusElement({ eventBus })
+          const eventBusElement2 = new EventBusElement({ eventBus })
 
-// 2. Subscribe the element to the event
-eventBusElement1.subscribe()
-eventBusElement2.subscribe()
+          // 2. Subscribe the element to the event
+          eventBusElement1.subscribe()
+          eventBusElement2.subscribe()
 
-// 3. Make the event bus trigger the callback
-eventBus.broadcast()
+          // 3. Make the event bus trigger the callback
+          eventBus.broadcast()
 
-// Result:
-// Hey there!
-// Hey there!
-        <% end %>
+          // Result:
+          // Hey there!
+          // Hey there!
+        JAVASCRIPT
+        %>
       </div>
       <br />
 
@@ -102,46 +104,47 @@ eventBus.broadcast()
       <br />
 
       <div class="w-full">
-        <%= render(UserInterface::CodeBlock.new) do %>
-class EventBus {
-  constructor() {
-    this.events = {}
-  }
+        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
+          class EventBus {
+            constructor() {
+              this.events = {}
+            }
 
-  createEvent(eventName) {
-    this.events[eventName] = {
-      subscribedElements: [],
-    }
-  }
+            createEvent(eventName) {
+              this.events[eventName] = {
+                subscribedElements: [],
+              }
+            }
 
-  broadcast(eventName) {
-    const subscribedElements = this.events[eventName]?.subscribedElements
+            broadcast(eventName) {
+              const subscribedElements = this.events[eventName]?.subscribedElements
 
-    if(!subscribedElements) return
+              if(!subscribedElements) return
 
-    subscribedElements.forEach(subscription => {
-      subscription.callback.call(subscription.element)
-    })
-  }
+              subscribedElements.forEach(subscription => {
+                subscription.callback.call(subscription.element)
+              })
+            }
 
-  subscribeElement(element, eventName, callback) {
-    this.events[eventName]?.subscribedElements.push({
-      element,
-      callback
-    })
-  }
-}
+            subscribeElement(element, eventName, callback) {
+              this.events[eventName]?.subscribedElements.push({
+                element,
+                callback
+              })
+            }
+          }
 
-class EventBusElement {
-  constructor({ eventBus }) {
-    this.eventBus = eventBus
-  }
+          class EventBusElement {
+            constructor({ eventBus }) {
+              this.eventBus = eventBus
+            }
 
-  subscribe(eventName, callback) {
-    this.eventBus.subscribeElement(this, eventName, callback)
-  }
-}
-        <% end %>
+            subscribe(eventName, callback) {
+              this.eventBus.subscribeElement(this, eventName, callback)
+            }
+          }
+        JAVASCRIPT
+        %>
       </div>
       <br />
 
@@ -151,18 +154,19 @@ class EventBusElement {
       <br />
 
       <div class="w-full">
-        <%= render(UserInterface::CodeBlock.new) do %>
-subscribeElement(element, eventName, callback) {
-  if(!this.events[eventName]) {
-    this._createEvent(eventName)
-  }
+        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
+          subscribeElement(element, eventName, callback) {
+            if(!this.events[eventName]) {
+              this._createEvent(eventName)
+            }
 
-  this.events[eventName].subscribedElements.push({
-    element,
-    callback
-  })
-}
-        <% end %>
+            this.events[eventName].subscribedElements.push({
+              element,
+              callback
+            })
+          }
+        JAVASCRIPT
+        %>
       </div>
       <br />
 
@@ -172,38 +176,39 @@ subscribeElement(element, eventName, callback) {
       <br />
 
       <div class="w-full">
-        <%= render(UserInterface::CodeBlock.new) do %>
-class EventBusElement {
-  constructor({ eventBus, data }) {
-    this.eventBus = eventBus
-    // Added this
-    this.data = data
-  }
+        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
+          class EventBusElement {
+            constructor({ eventBus, data }) {
+              this.eventBus = eventBus
+              // Added this
+              this.data = data
+            }
 
-  subscribe(eventName, callback) {
-    this.eventBus.subscribeElement(this, eventName, callback)
-  }
-}
+            subscribe(eventName, callback) {
+              this.eventBus.subscribeElement(this, eventName, callback)
+            }
+          }
 
-// Which allows us to do stuff like this:
+          // Which allows us to do stuff like this:
 
-const eventBusElement2 = new EventBusElement({
-  eventBus,
-  data: {
-    name: 'second element'
-  }
-})
+          const eventBusElement2 = new EventBusElement({
+            eventBus,
+            data: {
+              name: 'second element'
+            }
+          })
 
-eventBusElement2.subscribe(
-  'goodbye',
-  function() {
-    console.log(`Goodbye from ${this.data.name}`)
-  }
-)
+          eventBusElement2.subscribe(
+            'goodbye',
+            function() {
+              console.log(`Goodbye from ${this.data.name}`)
+            }
+          )
 
-eventBus.broadcast('goodbye')
-// Goodbye from second element
-        <% end %>
+          eventBus.broadcast('goodbye')
+          // Goodbye from second element
+        JAVASCRIPT
+        %>
       </div>
       <br />
 

@@ -2,13 +2,12 @@
 
 module UserInterface
   class CodeBlock < ApplicationComponent
+    attr_accessor :code
+
     def formatted_content
-      return '' unless content
+      return '' unless code
 
-      content_lines = content.split("\n")
-      content_lines.shift if content_lines.first.blank?
-
-      CGI.escape_html(content_lines.join("\n")).html_safe
+      CGI.escape_html(code.strip_heredoc.strip).html_safe
     end
   end
 end

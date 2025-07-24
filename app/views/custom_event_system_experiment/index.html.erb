@@ -154,7 +154,7 @@
       <br />
 
       <div class="w-full">
-        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
+        <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT, language: 'javascript')) %>
           subscribeElement(element, eventName, callback) {
             if(!this.events[eventName]) {
               this._createEvent(eventName)

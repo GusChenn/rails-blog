@@ -1,1 +1,1 @@
-<pre><code data-controller="highlight"><%= formatted_content %></code></pre>
+<pre><code data-controller="highlight" <%= "class='language-#{language}'" if language.present? %>><%= formatted_content %></code></pre>

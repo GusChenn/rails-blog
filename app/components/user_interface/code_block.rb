@@ -2,7 +2,7 @@
 
 module UserInterface
   class CodeBlock < ApplicationComponent
-    attr_accessor :code
+    attr_accessor :code, :language
 
     def formatted_content
       return '' unless code

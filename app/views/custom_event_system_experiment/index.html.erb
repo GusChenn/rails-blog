@@ -1,22 +1,35 @@
 <%= turbo_frame_tag "project_display" do %>
   <section>
-    <div data-controller="" class="flex flex-col items-center justify-center ">
+    <div data-controller="" class="flex flex-col items-center justify-center">
       <p class="text-pretty text-lg leading-8 body-text font-light">
-        On this experiment i plan to create my own custom event subscription system.
+        I've always wondered how does the browser's event listener API works under the hood. So to get a better understanding of it, I want to create my own event subscription system. It may have nothing to do with the browser's event system, but I want to come up with my own version of it and then compare it with the real deal.
       </p>
       <br />
+
       <p class="text-pretty text-lg leading-8 body-text font-light">
-        Whenever a JavaScript developer wants to subscribe an element to an event, it usually uses the default <code class="bg-slate-300">element.addEventListener()</code> API. I want to figure out how I can implement my own version of this API.
+        Whenever a JavaScript developers want to make an element listen for an event, it usually uses the default <code class="bg-slate-300">element.addEventListener()</code> API. This API allows its user to specify an event type (like 'click' or 'mouseover') and a callback function that will be executed when that event occurs on the element. So there are four main things that are being handled by the API:
       </p>
+      <br />
+
+      <ol class="list-decimal list-inside">
+        <li class="text-pretty text-lg leading-8 body-text font-light">
+          <b class="text-pretty text-lg leading-8 body-text">Event:</b> The event subscription system must be aware of the existance of an 'event';
+        </li>
+        <li class="text-pretty text-lg leading-8 body-text font-light">
+          <b class="text-pretty text-lg leading-8 body-text">Subscription:</b> An element opts in to listen for a specific event;
+        </li>
+        <li class="text-pretty text-lg leading-8 body-text font-light">
+          <b class="text-pretty text-lg leading-8 body-text">Event broadcast:</b> The system detects that an event has occurred and broadcasts it to all subscribed elements;
+        </li>
+        <li class="text-pretty text-lg leading-8 body-text font-light">
+          <strong class="text-pretty text-lg leading-8 body-text">Callback execution:</strong> The system executes the callback function associated with the event for each subscribed element.
+        </li>
+      </ol>
+      <br />
 
       <div class="w-full">
         <pre><code data-controller="highlight">
 class EventBus {
-  /* 
-  Event: User action and its callback
-  Subscription: Explicit declaration that an element is listening for a specific event
-  */
-
   constructor() {
     this.events = {}
   }
@@ -33,6 +46,7 @@ class EventBus {
 }
         </code></pre>
       </div>
+      <br />
     </div>
   </section>
 <% end %>

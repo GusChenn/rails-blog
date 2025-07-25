@@ -18,7 +18,7 @@ export default class extends Controller {
         // The staggered delay also helps ensure animations don't all try to start in the exact same frame.
         setTimeout(() => {
           this.addLine(lineText);
-        }, index * 100);
+        }, index * 600);
       });
 
       worker.terminate();

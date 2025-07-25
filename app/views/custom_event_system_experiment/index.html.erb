@@ -217,6 +217,14 @@
       <% end %>
       <br />
 
+      <%= render(UserInterface::ExecutableCodeBlock.new(code: <<-JAVASCRIPT))
+        const a = 3;
+        console.log(a**3)
+        console.log(a**3)
+        console.log(a**3)
+      JAVASCRIPT
+      %>
+
       <div data-controller="custom-event">this</div>
 
     </div>

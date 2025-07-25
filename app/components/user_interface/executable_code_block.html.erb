@@ -1,0 +1,10 @@
+<div data-controller="code-runner" data-code-runner-worker-url-value="<%= asset_path('code_worker.js') %>" class="flex flex-col">
+  <pre><code data-controller="highlight" <%= "class='language-#{language}'" if language.present? %>><%= formatted_content %></code></pre>
+
+  <template data-code-runner-target="source"><%= unescaped_content %></template>
+
+  <div class="flex bg-indigo-100 rounded-b">
+    <button data-action="click->code-runner#run" class="text-pretty body-text text-lg border-b-2 border-l-2 rounded-b border-indigo-500 border-dotted bg-indigo-200 hover:bg-indigo-400 hover:border-solid px-4 py-1 transition-all ease-in-out">⏵</button>
+    <pre data-code-runner-target="output" class="bg-light p-2 code-output-container"></pre>
+  </div>
+</div>

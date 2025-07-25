@@ -1,0 +1,20 @@
+.code-output-container {
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+
+.output-line {
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.output-line.is-visible {
+  transform: translateY(0);
+}
+
+code {
+  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 0.25rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}

@@ -13,6 +13,13 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      rotate: {
+        '30': '30deg',
+      },
+      spacing: {
+        'fuller': '150%',
+      },
+
     },
   },
   plugins: [

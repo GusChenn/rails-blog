@@ -1,11 +1,11 @@
-<article class='rounded border border-stone-700 flex flex-col sm:flex-row justify-between'>
+<article class='rounded border border-stone-700 flex flex-col sm:flex-row justify-between z-10'>
   <div class='flex flex-col w-full sm:w-2/3 p-4 gap-2 justify-center'>
     <div class='experience-grid'>
       <%= icon(icon_family, icon_name, class: "text-#{icon_color} text-xl w-fit") %>
       <h2 class='title-text font-bold text-lg'>
         <%= title %>
       </h2>
-      <h4 class='font-italica col-start-2 row-start-2'>
+      <h4 class='font-italica col-start-2 row-start-2 title-text text-sm font-bold text-gray-500'>
         <%= duration %>
       </h4>
     </div>

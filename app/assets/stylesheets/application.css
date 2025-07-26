@@ -9,13 +9,6 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
-@import "font-awesome";
-@import "components/icon_roulette";
-@import "components/experiences";
-@import "components/experience_card";
-@import "pages/home";
-@import "ui/typeface.tailwind.css";
-
 * {
   font-family: 'Recia', serif;
 }

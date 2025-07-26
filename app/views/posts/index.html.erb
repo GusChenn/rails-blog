@@ -6,14 +6,4 @@
   <%= render(Home::AboutMe.new) %>
 
   <%= render(Home::WhatIveBeenUpTo.new) %>
-
-  <ol class='list-decimal translate-x-6'>
-    <% @posts.each do |post| %>
-      <li class='underline decoration-wavy underline-offset-8 decoration-violet-500 hover:decoration-purple-800'>
-        <%= link_to post_path(post) do %>
-          <%= post.title %>
-        <% end %>
-      </li>
-    <% end %>
-  </ol>
 </section>

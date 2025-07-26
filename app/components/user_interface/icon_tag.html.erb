@@ -1,4 +1,8 @@
-<span class='indent-0 rounded-full body-text items-baseline font-light pl-3 pr-2 border border-stone-700 bg-<%= "#{background_color}"%> <%= custom_class %>'>
+<%= content_tag(
+  :span,
+  class: "indent-0 rounded-full body-text items-baseline font-light pl-3 pr-2 border border-stone-700 bg-#{background_color} #{custom_class}",
+  data: data
+) do %>
   <%= icon(icon_family, icon_name, class: 'fa-xs mr-1') %>
   <%= content %>
-</span>
+<% end %>

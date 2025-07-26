@@ -2,6 +2,6 @@
 
 module UserInterface
   class IconTag < ApplicationComponent
-    attr_accessor :icon_family, :icon_name, :content, :background_color, :custom_class
+    attr_accessor :icon_family, :icon_name, :content, :background_color, :custom_class, :data
   end
 end

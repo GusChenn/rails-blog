@@ -1,5 +1,10 @@
 <nav class="mb-20">
   <ul class="flex gap-4 justify-end py-4">
-    <li><a class="navbar-link text-pretty body-text font-light after:bg-indigo-500" href="/">About me</a></li>
+    <li>
+      <%= link_to "About me", root_path, class: "navbar-link text-pretty body-text font-light after:bg-indigo-500" %>
+    </li>
+    <li>
+      <%= link_to "Experiment", custom_event_system_experiment_index_path, class: "navbar-link text-pretty body-text font-light after:bg-pink-500" %>
+    </li>
   </ul>
 </nav>

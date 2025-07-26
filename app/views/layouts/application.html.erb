@@ -39,7 +39,8 @@
   </head>
 
   <body class='bg-gradient-to-br from-indigo-100 to-purple-50 min-h-screen h-full'>
-    <main class="container mx-auto pt-28 px-5 flex sm:max-w-[700px]">
+    <main class="container mx-auto px-5 flex sm:max-w-[700px] flex flex-col">
+      <%= render(UserInterface::Navbar.new) %>
       <%= yield %>
     </main>
   </body>

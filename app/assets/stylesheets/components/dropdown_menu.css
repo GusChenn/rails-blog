@@ -1,0 +1,21 @@
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 130%;
+  right: 0;
+  width: 500px;
+  height: 400px;
+  z-index: 1;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.dropdown-container:hover .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+}

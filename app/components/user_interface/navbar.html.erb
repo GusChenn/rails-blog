@@ -4,7 +4,16 @@
       <%= link_to "About me", root_path, class: "navbar-link text-pretty body-text font-light after:bg-indigo-500" %>
     </li>
     <li>
-      <%= link_to "Experiment", custom_event_system_experiment_index_path, class: "navbar-link text-pretty body-text font-light after:bg-pink-500" %>
+      <%= render(UserInterface::DropdownMenu.new) do %>
+        <ul class="p-4 bg-purple-50 border border-stone-700 rounded-xl rounded-tr-none columns-2 max-h-full overflow-scroll">
+          <li>
+            <%= link_to(custom_event_system_experiment_index_path, class: 'text-pretty body-text font-light align-middle') do %>
+              <%= icon('fa-solid', 'circle', class: 'text-indigo-500 text-sm mr-1') %>
+              Custom Event System
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
     </li>
   </ul>
 </nav>

@@ -7,7 +7,7 @@ export default class extends Controller {
 
   run() {
     this.outputTarget.innerHTML = "<span>Executing...</span>";
-    const code = this.sourceTarget.innerHTML;
+    const code = this.sourceTarget.content.textContent;
     const worker = new Worker(this.workerUrlValue);
 
     worker.onmessage = (event) => {

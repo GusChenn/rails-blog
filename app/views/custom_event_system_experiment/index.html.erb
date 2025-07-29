@@ -7,12 +7,17 @@
     <br />
 
     <%= render(UserInterface::Paragraph.new) do %>
-      I've always wondered how does the browser's event listener API works under the hood. So to get a better understanding of it, I want to create my own event subscription system. It may have nothing to do with the browser's event system, but I want to come up with my own version of it and then compare it with the real deal.
+      I had this idea the other day of making a matrix of HTML elements that could share data among themselves through some kind of 'wire'. My idea was to click one of the elements in the matrix and have all elements tell me which element was clicked.
     <% end %>
     <br />
 
     <%= render(UserInterface::Paragraph.new) do %>
-      Whenever a JavaScript developers want to make an element listen for an event, it usually uses the default <code class="bg-slate-300">element.addEventListener()</code> API. This API allows us to specify an event type (like 'click' or 'mouseover') and a callback function that will be executed when that event occurs on the element. The way I see it, there are four main things being handled by the API:
+      To accomplish that, my first thought was to use the default browser APIs (most likely something like the <code class="bg-slate-300">CustomEvent</code> interface) but then decided that I wanted to create my own event handling system because reasons (just wanted to try doing it my own way) and for that I started looking into how the default event handling system work.
+    <% end %>
+    <br />
+
+    <%= render(UserInterface::Paragraph.new) do %>
+      Whenever a JavaScript developers want to make an element listen for an event, it usually uses the default <code class="bg-slate-300">element.addEventListener()</code> interface. This interface allows us to specify an event type (like 'click' or 'mouseover') and a callback function that will be executed when that event occurs on the element. The way I see it, there are four main things being handled by this method:
     <% end %>
     <br />
 
@@ -27,7 +32,7 @@
         <b class="text-pretty text-lg leading-8 body-text">Event broadcast:</b> The system detects that an event has occurred and broadcasts it to all subscribed elements;
       </li>
       <li class="text-pretty text-lg leading-8 body-text font-light">
-        <strong class="text-pretty text-lg leading-8 body-text">Callback execution:</strong> The system executes the callback function associated with the event for each subscribed element.
+        <strong class="text-pretty text-lg leading-7 body-text">Callback execution:</strong> The system executes the callback function from elements subscribed to the event. My system will be a little bit simpler than the browser's default event handling system in this regard: I'll add no scoping to the callback execution, meaning that if there are 5 elements subscribed to the 'click' event and any of them where clicked, all 5 elements will have their callbacks ran.
       </li>
     </ol>
     <br />
@@ -274,7 +279,36 @@
     </div>
     <br />
 
-    <div data-controller="custom-event">this</div>
+    <%= render(UserInterface::Paragraph.new) do %>
+      And thats it! Using this system, I was able to create my original idea
+    <% end %>
+    <br />
+
+    <div data-controller="custom-event" class="flex flex-col">
+      <div class="flex">
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+      </div>
+
+      <div class="flex">
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+      </div>
+
+      <div class="flex">
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+        <div data-custom-event-target="element">el</div>
+      </div>
+    </div>
 
   </div>
 </section>

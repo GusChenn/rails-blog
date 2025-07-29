@@ -5,7 +5,7 @@ class EventBus {
     this.events = {}
   }
 
-  broadcast(eventName) {
+  broadcastEvent(eventName) {
     const subscribedElements = this.events[eventName]?.subscribedElements
 
     if(!subscribedElements) return
@@ -43,9 +43,9 @@ class EventBusElement {
     this.eventBus.subscribeElement(this, eventName, callback)
   }
 
-  // notifyEventBus(eventName) {
-  //   this.eventBus.broadcast(eventName)
-  // }
+  broadcastEventToEventBus(eventName) {
+    this.eventBus.broadcastEvent(eventName)
+  }
 }
 
 export default class extends Controller {
@@ -69,9 +69,9 @@ export default class extends Controller {
 
     // 3. Subscribe the elements to the event bus
     eventBusElement1.subscribe(
-      'hello',
+      'goodbye',
       function() {
-        console.log(`Hello from ${this.data.name}`)
+        console.log(`Bye from ${this.data.name}`)
       }
     )
 
@@ -83,6 +83,6 @@ export default class extends Controller {
     )
 
     // 3. Make the event bus trigger the callback
-    eventBus.broadcast('goodbye')
+    eventBusElement2.broadcastEventToEventBus('goodbye')
   }
 }

@@ -49,37 +49,47 @@ class EventBusElement {
 }
 
 export default class extends Controller {
-  static targets = []
+  static targets = ['element']
 
   connect() {
     const eventBus = new EventBus()
-    const eventBusElement1 = new EventBusElement({
-      eventBus,
-      elementData: {
-        name: 'first element'
-      }
+
+    this.eventBusElements = this.elementTargets.map(element => {
+      return new EventBusElement({
+        eventBus,
+        elementData: {
+          row: element.dataset.row,
+          col: element.dataset.col,
+          node: element
+        }
+      })
     })
-    const eventBusElement2 = new EventBusElement({
-      eventBus,
-      elementData: {
-        name: 'second element'
-      }
+
+    this.eventBusElements.forEach(eventBusElement => {
+      eventBusElement.subscribe('click', function(eventData) {
+        const { row: clickedRow, col: clickedCol } = eventData
+
+        if(this.elementData.row === clickedRow && this.elementData.col === clickedCol) {
+          return
+        } else if (this.elementData.row < clickedRow) {
+          console.log(this.elementData.node)
+        }
+      })
+    })
+  }
+
+  handleElementClick(event) {
+    const { row, col } = event.currentTarget.dataset
+
+    const clickedEventBusElement = this.eventBusElements.find(element => {
+      return element.elementData.row === row && element.elementData.col === col
     })
 
-    eventBusElement1.subscribe(
-      'goodbye',
-      function(eventData) {
-        console.log(`Bye from ${this.elementData.name} triggered ${eventData.elementName}`)
-      }
-    )
-
-    eventBusElement2.subscribe(
-      'goodbye',
-      function(eventData) {
-        console.log(`Goodbye from ${this.elementData.name} triggered by ${eventData.elementName}`)
-      }
-    )
-
-    eventBusElement2.broadcastEventToEventBus('goodbye', { elementName: eventBusElement2.elementData.name })
+    if (clickedEventBusElement) {
+      clickedEventBusElement.broadcastEventToEventBus('click', {
+        row,
+        col,
+      })
+    }
   }
 }

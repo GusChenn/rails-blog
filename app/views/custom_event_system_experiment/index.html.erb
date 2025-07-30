@@ -274,31 +274,16 @@
     <% end %>
     <br />
 
-    <div data-controller="custom-event" class="flex flex-col">
-      <div class="flex">
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-      </div>
-
-      <div class="flex">
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-      </div>
-
-      <div class="flex">
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-        <div data-custom-event-target="element">el</div>
-      </div>
+    <div data-controller="custom-event" class="flex flex-col w-full items-center gap-2">
+      <% (0..4).each do |i| %>
+        <div class="flex gap-2">
+          <% (0..4).each do |j| %>
+            <div data-custom-event-target="element" data-action="click->custom-event#handleElementClick" data-row="<%=i%>" data-col="<%=j%>" class="border bg-purple-300 rounded h-12 w-12 flex justify-center items-center cursor-pointer hover:bg-purple-500 transition-all ease-in-out"><%= icon('fa-solid', 'arrow-up') %></div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
+    <br />
 
   </div>
 </section>

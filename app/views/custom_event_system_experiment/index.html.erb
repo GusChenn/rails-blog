@@ -175,7 +175,7 @@
     <br />
 
     <%= render(UserInterface::Paragraph.new) do %>
-      We can also add a new <code class="bg-slate-300">data</code> attribute to the <code class="bg-slate-300">EventBusElement</code> class. This allows us to access data from the subscribing element within the callback function:
+      We can also can make it so elements can broadcast events to the event bus. And as a final touch, we can add a new <code class="bg-slate-300">data</code> attribute to both the <code class="bg-slate-300">EventBusElement</code> and <code class="bg-slate-300">EventBus</code> classes so we can access data from both the subscribed element and from the element that broadcasted the event within the callback function:
     <% end %>
     <br />
 
@@ -186,13 +186,13 @@
             this.events = {}
           }
 
-          broadcastEvent(eventName) {
+          broadcastEvent(eventName, eventData) {
             const subscribedElements = this.events[eventName]?.subscribedElements
 
             if(!subscribedElements) return
 
             subscribedElements.forEach(subscription => {
-              subscription.callback.call(subscription.element)
+              subscription.callback.call(subscription.element, eventData)
             })
           }
 
@@ -215,33 +215,50 @@
         }
 
         class EventBusElement {
-          constructor({ eventBus, data }) {
+          constructor({ eventBus, elementData }) {
             this.eventBus = eventBus
-            this.data = data
+            this.elementData = elementData
           }
 
           subscribe(eventName, callback) {
             this.eventBus.subscribeElement(this, eventName, callback)
           }
+
+          broadcastEventToEventBus(eventName, eventData) {
+            this.eventBus.broadcastEvent(eventName, eventData)
+          }
         }
 
         // Which allows us to do stuff like this:
         const eventBus = new EventBus()
-        const eventBusElement = new EventBusElement({
+        const eventBusElement1 = new EventBusElement({
           eventBus,
-          data: {
-            name: 'foo'
+          elementData: {
+            name: 'first element'
+          }
+        })
+        const eventBusElement2 = new EventBusElement({
+          eventBus,
+          elementData: {
+            name: 'second element'
           }
         })
 
-        eventBusElement.subscribe(
+        eventBusElement1.subscribe(
           'goodbye',
-          function() {
-            console.log(`Goodbye from ${this.data.name}`)
+          function(eventData) {
+            console.log(`Bye from ${this.elementData.name} triggered by ${eventData.elementName}`)
           }
         )
 
-        eventBus.broadcastEvent('goodbye')
+        eventBusElement2.subscribe(
+          'goodbye',
+          function(eventData) {
+            console.log(`Goodbye from ${this.elementData.name} triggered by ${eventData.elementName}`)
+          }
+        )
+
+        eventBusElement2.broadcastEventToEventBus('goodbye', { elementName: eventBusElement2.elementData.name })
       JAVASCRIPT
       %>
     </div>
@@ -250,33 +267,6 @@
     <%= render(UserInterface::Quote.new) do %>
       One thing i found out while working on this modification is that arrow functions don't have their own <code class="bg-slate-300">this</code> context!
     <% end %>
-    <br />
-
-    <%= render(UserInterface::Paragraph.new) do %>
-      And finally we can make it so elements can broadcast events to the event bus:
-    <% end %>
-    <br />
-
-    <div class="w-full">
-      <%= render(UserInterface::CodeBlock.new(code: <<-JAVASCRIPT))
-        class EventBusElement {
-          constructor({ eventBus, data }) {
-            this.eventBus = eventBus
-            this.data = data
-          }
-
-          subscribe(eventName, callback) {
-            this.eventBus.subscribeElement(this, eventName, callback)
-          }
-
-          // Added this
-          broadcastEventToEventBus(eventName) {
-            this.eventBus.broadcastEvent(eventName)
-          }
-        }
-      JAVASCRIPT
-      %>
-    </div>
     <br />
 
     <%= render(UserInterface::Paragraph.new) do %>

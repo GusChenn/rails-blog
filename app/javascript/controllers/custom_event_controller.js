@@ -5,13 +5,13 @@ class EventBus {
     this.events = {}
   }
 
-  broadcastEvent(eventName) {
+  broadcastEvent(eventName, eventData) {
     const subscribedElements = this.events[eventName]?.subscribedElements
 
     if(!subscribedElements) return
 
     subscribedElements.forEach(subscription => {
-      subscription.callback.call(subscription.element)
+      subscription.callback.call(subscription.element, eventData)
     })
   }
 
@@ -34,17 +34,17 @@ class EventBus {
 }
 
 class EventBusElement {
-  constructor({ eventBus, data }) {
+  constructor({ eventBus, elementData }) {
     this.eventBus = eventBus
-    this.data = data
+    this.elementData = elementData
   }
 
   subscribe(eventName, callback) {
     this.eventBus.subscribeElement(this, eventName, callback)
   }
 
-  broadcastEventToEventBus(eventName) {
-    this.eventBus.broadcastEvent(eventName)
+  broadcastEventToEventBus(eventName, eventData) {
+    this.eventBus.broadcastEvent(eventName, eventData)
   }
 }
 
@@ -52,37 +52,34 @@ export default class extends Controller {
   static targets = []
 
   connect() {
-    // 1. Create the event bus and its elements
     const eventBus = new EventBus()
     const eventBusElement1 = new EventBusElement({
       eventBus,
-      data: {
+      elementData: {
         name: 'first element'
       }
     })
     const eventBusElement2 = new EventBusElement({
       eventBus,
-      data: {
+      elementData: {
         name: 'second element'
       }
     })
 
-    // 3. Subscribe the elements to the event bus
     eventBusElement1.subscribe(
       'goodbye',
-      function() {
-        console.log(`Bye from ${this.data.name}`)
+      function(eventData) {
+        console.log(`Bye from ${this.elementData.name} triggered ${eventData.elementName}`)
       }
     )
 
     eventBusElement2.subscribe(
       'goodbye',
-      function() {
-        console.log(`Goodbye from ${this.data.name}`)
+      function(eventData) {
+        console.log(`Goodbye from ${this.elementData.name} triggered by ${eventData.elementName}`)
       }
     )
 
-    // 3. Make the event bus trigger the callback
-    eventBusElement2.broadcastEventToEventBus('goodbye')
+    eventBusElement2.broadcastEventToEventBus('goodbye', { elementName: eventBusElement2.elementData.name })
   }
 }

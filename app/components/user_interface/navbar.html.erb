@@ -5,7 +5,7 @@
     </li>
     <li>
       <%= render(UserInterface::DropdownMenu.new) do %>
-        <ul class="p-4 bg-pink-50 border rounded-xl rounded-tr-none columns-2 max-h-full overflow-scroll">
+        <ul class="p-4 bg-pink-50 border rounded-xl rounded-tr-none columns-2 max-h-full overflow-auto">
           <li>
             <%= link_to(custom_event_system_experiment_index_path, class: 'flex gap-1 items-baseline') do %>
               <p class="text-pretty body-text font-light align-middle underline decoration-stone-700">Custom Event System</p>

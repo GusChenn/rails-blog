@@ -65,14 +65,26 @@ export default class extends Controller {
       })
     })
 
+    function calculateAngle(clickedCol, clickedRow, currentCol, currentRow) {
+      const deltaX = clickedCol - currentCol
+      const deltaY = clickedRow - currentRow
+      const angleInRadians = Math.atan2(deltaY, deltaX)
+      const angleInDegrees = angleInRadians * (180 / Math.PI)
+      return (angleInDegrees + 360) % 360 // Normalize to [0, 360)
+    }
+
     this.eventBusElements.forEach(eventBusElement => {
       eventBusElement.subscribe('click', function(eventData) {
         const { row: clickedRow, col: clickedCol } = eventData
 
         if(this.elementData.row === clickedRow && this.elementData.col === clickedCol) {
+          this.elementData.node.classList.add('bg-purple-500')
           return
-        } else if (this.elementData.row < clickedRow) {
-          console.log(this.elementData.node)
+        } else {
+          const angle = calculateAngle(clickedCol, clickedRow, this.elementData.col, this.elementData.row)
+
+          this.elementData.node.classList.remove('bg-purple-500')
+          this.elementData.node.querySelector('i').style.transform = `rotate(${angle}deg)`
         }
       })
     })

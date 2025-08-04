@@ -278,7 +278,15 @@
       <% (0..4).each do |i| %>
         <div class="flex gap-2">
           <% (0..4).each do |j| %>
-            <div data-custom-event-target="element" data-action="click->custom-event#handleElementClick" data-row="<%=i%>" data-col="<%=j%>" class="border bg-purple-300 rounded h-12 w-12 flex justify-center items-center cursor-pointer hover:bg-purple-500 transition-all ease-in-out"><%= icon('fa-solid', 'arrow-up') %></div>
+            <div 
+             data-custom-event-target="element"
+             data-action="click->custom-event#handleElementClick"
+             data-row="<%=i%>"
+             data-col="<%=j%>"
+             class="border bg-purple-300 rounded h-12 w-12 flex justify-center items-center cursor-pointer hover:bg-purple-500 transition-all ease-in-out border border-2 border-purple-500 border-dotted"
+            >
+             <%= icon('fa-solid', 'arrow-right', class: 'transition-all ease-in-out') %>
+            </div>
           <% end %>
         </div>
       <% end %>

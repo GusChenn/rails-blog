@@ -1,17 +1,15 @@
 databases:
   - name: rails_blog_production
-    databaseName: rails_blog_production
-    user: rails_blog_production
     plan: free
 
 services:
   - type: web
     name: rails_blog_production
     runtime: ruby
-    plan: free
+    plan: starter
     buildCommand: "./bin/render-build.sh"
-    # preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
+    preDeployCommand: "bundle exec rails db:migrate"
+    startCommand: './bin/rails server'
     envVars:
       - key: DATABASE_URL
         fromDatabase:

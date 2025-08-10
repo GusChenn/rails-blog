@@ -1,0 +1,20 @@
+<section>
+  <div class="flex flex-col">
+    <%= render(UserInterface::Title.new) do %>
+      Playing with Perspective
+    <% end %>
+    <br />
+
+    <%= render(UserInterface::Paragraph.new) do %>
+      I saw <%= link_to "these pokemon card animations", "https://poke-holo.simey.me/", target: "_blank", class: 'text-pretty body-text font-light underline cursor-pointer decoration-indigo-500 underline-offset-4' %> by Simon Goellner and wanted to try creating something similar but instead of using pokemon cards, I wanted to use some business cards. Yeah, I know, it looks like a boring idea compared to pokemon cards, but I think my business cards ideas are pretty cool as well 🥸
+    <% end %>
+    <br />
+
+    <%= render(UserInterface::Paragraph.new) do %>
+      My idea for this page it to use it as an archive for these business cards/ drawings i make!
+    <% end %>
+    <br />
+
+
+    <%= render(Experiments::CardWithPerspective.new(front_image_url: 'cards/frubs_e_co_front.png', back_image_url: 'cards/frubs_e_co_back.png')) %>
+</section>

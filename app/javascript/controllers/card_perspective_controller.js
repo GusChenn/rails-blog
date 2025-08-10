@@ -34,10 +34,14 @@ export default class extends Controller {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * 15;
+    let rotateX = ((y - centerY) / centerY) * 15;
     const rotateY = ((x - centerX) / centerX) * -15;
 
     const flipRotate = this.isFlipped ? 180 : 0;
+
+    if (this.isFlipped) {
+      rotateX *= -1;
+    }
 
     card.style.transform = `
       perspective(600px)

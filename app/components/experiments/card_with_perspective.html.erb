@@ -1,0 +1,21 @@
+<div
+  data-controller="card-perspective"
+  data-card-perspective-is-moving-class="--is-moving"
+>
+  <div
+    class="card-container"
+    data-card-perspective-target="card"
+    data-action="
+      mouseenter->card-perspective#startTracking
+      mouseleave->card-perspective#stopTracking
+      click->card-perspective#toggleFlip
+    "
+  >
+    <div class="card-face card-face--front">
+      <img src="<%= asset_path(front_image_url) %>" alt="Card Front" class="rounded-lg">
+    </div>
+    <div class="card-face card-face--back">
+      <img src="<%= asset_path(back_image_url) %>" alt="Card Back" class="rounded-lg">
+    </div>
+  </div>
+</div>

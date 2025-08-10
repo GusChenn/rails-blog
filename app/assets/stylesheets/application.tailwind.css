@@ -8,6 +8,13 @@
   }
 }
 
+@layer base {
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
 .styled-first-letter::first-letter {
   @apply text-violet-800;
 

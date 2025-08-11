@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["card"];
+  static targets = ["card", "mask"];
   static classes = ["isMoving"];
 
   connect() {
@@ -27,6 +27,8 @@ export default class extends Controller {
   update() {
     const card = this.cardTarget;
     const rect = card.getBoundingClientRect();
+    const mask = this.maskTarget;
+    const maskRect = mask.getBoundingClientRect();
 
     const x = this.lastX - rect.left;
     const y = this.lastY - rect.top;
@@ -37,19 +39,22 @@ export default class extends Controller {
     let rotateX = ((y - centerY) / centerY) * 15;
     const rotateY = ((x - centerX) / centerX) * -15;
 
+    const maskX = this.lastX - rect.left;
+    const maskY = this.lastY - rect.top;
+
+    mask.style.setProperty('--glow-x', `${maskX}px`);
+    mask.style.setProperty('--glow-y', `${maskY}px`);
+
     const flipRotate = this.isFlipped ? 180 : 0;
 
     if (this.isFlipped) {
       rotateX *= -1;
     }
 
-    card.style.transform = `
-      perspective(600px)
-      rotateY(${flipRotate}deg)
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-      scale(1.05)
-    `;
+    card.style.setProperty('--rx', `${rotateX}deg`);
+    card.style.setProperty('--ry', `${rotateY}deg`);
+    card.style.setProperty('--f', `${flipRotate}deg`);
+    card.style.setProperty('--s', '1.05');
 
     this.ticking = false;
   }
@@ -63,14 +68,18 @@ export default class extends Controller {
     this.cardTarget.classList.remove(this.isMovingClass);
     this.cardTarget.removeEventListener("mousemove", this.handleMouseMove);
 
-    const flipRotate = this.isFlipped ? 180 : 0;
-    this.cardTarget.style.transform = `
-      perspective(600px)
-      rotateY(${flipRotate}deg)
-      rotateX(0deg)
-      rotateY(0deg)
-      scale(1)
-    `;
+    this.cardTarget.addEventListener('transitionend', () => {
+      const flipRotate = this.isFlipped ? 180 : 0;
+
+      this.cardTarget.style.setProperty('--rx', '0deg');
+      this.cardTarget.style.setProperty('--ry', '0deg');
+      this.cardTarget.style.setProperty('--f', `${flipRotate}deg`);
+      this.cardTarget.style.setProperty('--s', '1');
+
+      this.maskTarget.style.setProperty('--glow-x', `50%`);
+      this.maskTarget.style.setProperty('--glow-y', `50%`);
+    }, { once: true });
+
   }
 
   toggleFlip() {

@@ -55,8 +55,9 @@
   border-radius: 0.5rem;
   overflow: hidden;
   mix-blend-mode: multiply;
-  background: radial-gradient(circle at var(--glow-x) var(--glow-y), rgb(255, 255, 255) 0%, rgb(230, 230, 230) 40%);
+  background: radial-gradient(circle at var(--glow-x) var(--glow-y), #fff 0%, #e6e6e6 40%);
   pointer-events: none;
   z-index: 10;
   transform: translateZ(1px);
+  will-change: background;
 }

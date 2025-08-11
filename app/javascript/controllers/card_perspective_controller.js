@@ -9,9 +9,11 @@ export default class extends Controller {
     this.ticking = false;
     this.lastX = 0;
     this.lastY = 0;
+    this.animatingGlow = false;
 
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.update = this.update.bind(this);
+    this.animateGlowToCenter = this.animateGlowToCenter.bind(this);
   }
 
   handleMouseMove(event) {
@@ -28,7 +30,6 @@ export default class extends Controller {
     const card = this.cardTarget;
     const rect = card.getBoundingClientRect();
     const mask = this.maskTarget;
-    const maskRect = mask.getBoundingClientRect();
 
     const x = this.lastX - rect.left;
     const y = this.lastY - rect.top;
@@ -39,8 +40,14 @@ export default class extends Controller {
     let rotateX = ((y - centerY) / centerY) * 15;
     const rotateY = ((x - centerX) / centerX) * -15;
 
-    const maskX = this.lastX - rect.left;
+    // Calculate glow position relative to the card container
+    let maskX = this.lastX - rect.left;
     const maskY = this.lastY - rect.top;
+
+    // Invert X position when card is flipped
+    if (this.isFlipped) {
+      maskX = rect.width - maskX;
+    }
 
     mask.style.setProperty('--glow-x', `${maskX}px`);
     mask.style.setProperty('--glow-y', `${maskY}px`);
@@ -76,10 +83,51 @@ export default class extends Controller {
       this.cardTarget.style.setProperty('--f', `${flipRotate}deg`);
       this.cardTarget.style.setProperty('--s', '1');
 
-      this.maskTarget.style.setProperty('--glow-x', `50%`);
-      this.maskTarget.style.setProperty('--glow-y', `50%`);
+      this.animateGlowToCenter();
     }, { once: true });
 
+  }
+
+  animateGlowToCenter() {
+    if (this.animatingGlow) return;
+    
+    this.animatingGlow = true;
+    const rect = this.cardTarget.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Get current glow position
+    const currentGlowX = this.lastX - rect.left;
+    const currentGlowY = this.lastY - rect.top;
+    
+    // Apply flip inversion if needed
+    const startX = this.isFlipped ? rect.width - currentGlowX : currentGlowX;
+    const startY = currentGlowY;
+    
+    const startTime = performance.now();
+    const duration = 600; // 600ms animation
+    
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function (cubic-bezier equivalent)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      
+      const currentX = startX + (centerX - startX) * easeProgress;
+      const currentY = startY + (centerY - startY) * easeProgress;
+      
+      this.maskTarget.style.setProperty('--glow-x', `${currentX}px`);
+      this.maskTarget.style.setProperty('--glow-y', `${currentY}px`);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        this.animatingGlow = false;
+      }
+    };
+    
+    requestAnimationFrame(animate);
   }
 
   toggleFlip() {
